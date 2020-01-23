@@ -1,25 +1,20 @@
-# From https://github.com/richelbilderbeek/pirouette_article/issues/57
+# From https://github.com/richelbilderbeek/razzo/issues/317 :
 #
-# Write script that shows the true and twin error for Yule
-# tree and Yule tree prior
-#
-# The only difference with
-# https://github.com/richelbilderbeek/pirouette_example_3
-# is that the twin tree must also be Yule (in the other
-# example, the twin tree is BD)
-#
+# Write script that shows the true and twin error for a BD tree
+# tree when assuming a Yule tree prior
+# and using a Yule twin
 suppressMessages(library(pirouette))
 suppressMessages(library(ggplot2))
 
 root_folder <- getwd()
-example_no <- 22
+example_no <- 26
 rng_seed <- 314
 example_folder <- file.path(root_folder, paste0("example_", example_no, "_", rng_seed))
 dir.create(example_folder, showWarnings = FALSE, recursive = TRUE)
 setwd(example_folder)
 set.seed(rng_seed)
 testit::assert(is_beast2_installed())
-phylogeny <- create_yule_tree(n_taxa = 6, crown_age = 10)
+phylogeny <- create_bd_tree(n_taxa = 6, crown_age = 10)
 
 alignment_params <- create_alignment_params(
   sim_tral_fun = get_sim_tral_with_std_nsm_fun(
@@ -31,7 +26,11 @@ alignment_params <- create_alignment_params(
   fasta_filename = "true_alignment.fas"
 )
 
-experiment <- create_gen_experiment()
+experiment <- create_gen_experiment(
+  inference_model = create_inference_model(
+    tree_prior = create_yule_tree_prior()
+  )
+)
 experiment$beast2_options$input_filename <- "true_alignment_gen.xml"
 experiment$beast2_options$output_state_filename <- "true_alignment_gen.xml.state"
 experiment$inference_model$mcmc$tracelog$filename <- "true_alignment_gen.log"
@@ -53,10 +52,23 @@ if (is_on_travis()) {
   }
 }
 
+twinning_params <- create_twinning_params(
+  rng_seed_twin_tree = rng_seed,
+  sim_twin_tree_fun = get_sim_yule_twin_tree_fun(),
+  rng_seed_twin_alignment = rng_seed,
+  sim_twal_fun = get_sim_twal_same_n_muts_fun(
+    mutation_rate = 0.1,
+    max_n_tries = 1000
+  ),
+  twin_tree_filename = "twin_tree.newick",
+  twin_alignment_filename = "twin_alignment.fas",
+  twin_evidence_filename = "twin_evidence.csv"
+)
+
 pir_params <- create_pir_params(
   alignment_params = alignment_params,
   experiments = experiments,
-  twinning_params = create_twinning_params(sim_twin_tree_fun = create_sim_yule_twin_tree_fun())
+  twinning_params = twinning_params
 )
 
 rm_pir_param_files(pir_params)
