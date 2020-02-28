@@ -6,6 +6,11 @@
 suppressMessages(library(pirouette))
 suppressMessages(library(ggplot2))
 
+################################################################################
+# Constants
+################################################################################
+is_testing <- is_on_travis()
+
 root_folder <- getwd()
 example_no <- 26
 rng_seed <- 314
@@ -21,9 +26,7 @@ alignment_params <- create_alignment_params(
     mutation_rate = 0.1,
     site_model = beautier::create_jc69_site_model()
   ),
-  root_sequence = create_blocked_dna(length = 1000),
-  rng_seed = rng_seed,
-  fasta_filename = "true_alignment.fas"
+  root_sequence = create_blocked_dna(length = 1000)
 )
 
 experiment <- create_gen_experiment(
@@ -31,38 +34,14 @@ experiment <- create_gen_experiment(
     tree_prior = create_yule_tree_prior()
   )
 )
-experiment$beast2_options$input_filename <- "true_alignment_gen.xml"
-experiment$beast2_options$output_state_filename <- "true_alignment_gen.xml.state"
-experiment$inference_model$mcmc$tracelog$filename <- "true_alignment_gen.log"
-experiment$inference_model$mcmc$treelog$filename <- "true_alignment_gen.trees"
-experiment$inference_model$mcmc$screenlog$filename <- "true_alignment_gen.csv"
-experiment$errors_filename <- "true_errors_gen.csv"
 experiments <- list(experiment)
 
-# Set the RNG seed
-for (i in seq_along(experiments)) {
-  experiments[[i]]$beast2_options$rng_seed <- rng_seed
-}
-
-# Shorter on Travis
-if (is_on_travis()) {
-  for (i in seq_along(experiments)) {
-    experiments[[i]]$inference_model$mcmc$chain_length <- 3000
-    experiments[[i]]$inference_model$mcmc$store_every <- 1000
-  }
-}
-
 twinning_params <- create_twinning_params(
-  rng_seed_twin_tree = rng_seed,
   sim_twin_tree_fun = get_sim_yule_twin_tree_fun(),
-  rng_seed_twin_alignment = rng_seed,
   sim_twal_fun = get_sim_twal_same_n_muts_fun(
     mutation_rate = 0.1,
     max_n_tries = 1000
-  ),
-  twin_tree_filename = "twin_tree.newick",
-  twin_alignment_filename = "twin_alignment.fas",
-  twin_evidence_filename = "twin_evidence.csv"
+  )
 )
 
 pir_params <- create_pir_params(
@@ -71,7 +50,9 @@ pir_params <- create_pir_params(
   twinning_params = twinning_params
 )
 
-rm_pir_param_files(pir_params)
+if (is_testing) {
+  pir_params <- shorten_pir_params(pir_params)
+}
 
 errors <- pir_run(
   phylogeny,
