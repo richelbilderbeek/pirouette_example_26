@@ -17,10 +17,9 @@ phylogeny <- create_bd_tree(n_taxa = 6, crown_age = 10)
 
 # Setup pirouette
 pir_params <- create_std_pir_params(folder_name = folder_name)
-for (i in seq_along(pir_params$experiments)) {
-  pir_params$experiments[[i]]$inference_model$tree_prior <- 
-    create_yule_tree_prior()
-}
+# Generative models assumes Yule
+pir_params$experiments[[1]]$inference_model$tree_prior <-
+  create_yule_tree_prior()
 if (is_testing) {
   pir_params <- shorten_pir_params(pir_params)
 }
