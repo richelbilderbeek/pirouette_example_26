@@ -3,7 +3,9 @@
 # Write script that shows the true and twin error for a BD tree
 # tree when assuming a Yule tree prior
 # and using a Yule twin
-suppressMessages(library(pirouette))
+library(pirouette)
+library(beautier)
+library(beastier)
 
 # Constants
 is_testing <- is_on_travis()
