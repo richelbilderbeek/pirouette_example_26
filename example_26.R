@@ -6,6 +6,8 @@
 library(pirouette)
 library(beautier)
 library(beastier)
+library(testthat)
+library(ggplot2)
 
 # Constants
 is_testing <- is_on_ci()
