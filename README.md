@@ -10,5 +10,13 @@ that shows the true and twin error for a BD tree when assuming a Yule tree prior
 
 ## Results
 
-![](example_26_314/errors.png)
+![](example_26/errors.png)
+
+### Individual results
+
+![](example_26/314/errors.png)
+![](example_26/315/errors.png)
+![](example_26/316/errors.png)
+![](example_26/317/errors.png)
+![](example_26/318/errors.png)
 
