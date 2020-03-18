@@ -6,16 +6,21 @@ Loading required package: tracerer
 Registered S3 method overwritten by 'pryr':
   method      from
   print.bytes Rcpp
+Saving 7 x 7 in image
+Saving 7 x 7 in image
+Saving 7 x 7 in image
+Saving 7 x 7 in image
+Saving 7 x 7 in image
 
-real	188m17.157s
-user	174m1.536s
-sys	5m21.623s
+real	197m53.507s
+user	180m59.262s
+sys	5m9.855s
 
 
 ###############################################################################
 Peregrine Cluster
-Job 10157137 for user 'p230198'
-Finished at: Tue Mar 17 14:37:45 CET 2020
+Job 10159967 for user 'p230198'
+Finished at: Tue Mar 17 18:32:14 CET 2020
 
 Job details:
 ============
@@ -23,21 +28,21 @@ Job details:
 Name                : pirex26
 User                : p230198
 Partition           : regular
-Nodes               : pg-node011
+Nodes               : pg-node012
 Cores               : 1
 State               : COMPLETED
-Submit              : 2020-03-17T11:29:26
-Start               : 2020-03-17T11:29:27
-End                 : 2020-03-17T14:37:45
+Submit              : 2020-03-17T15:13:43
+Start               : 2020-03-17T15:14:18
+End                 : 2020-03-17T18:32:14
 Reserved walltime   : 1-00:00:00
-Used walltime       :   03:08:18
-Used CPU time       :   02:59:24 (efficiency: 95.27%)
-% User (Computation): 97.01%
-% System (I/O)      :  3.00%
+Used walltime       :   03:17:56
+Used CPU time       :   03:06:09 (efficiency: 94.05%)
+% User (Computation): 97.22%
+% System (I/O)      :  2.78%
 Mem reserved        : 10G/node
-Max Mem used        : 1.01G (pg-node011)
-Max Disk Write      : 71.68K (pg-node011)
-Max Disk Read       : 1.35M (pg-node011)
+Max Mem used        : 992.20M (pg-node012)
+Max Disk Write      : 71.68K (pg-node012)
+Max Disk Read       : 1.36M (pg-node012)
 
 
 Acknowledgements:

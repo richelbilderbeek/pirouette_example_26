@@ -1,0 +1,18 @@
+<itsabeastystatewerein version='2.0' sample='10000000'>
+<statenode id='Tree.t:alignment'>((((0:0.06387954107209526,5:0.06387954107209526)6:0.18222775473185726,4:0.24610729580395252)8:0.06692011627068273,1:0.31302741207463525)7:0.7356033133698077,(2:0.9895904951492613,3:0.9895904951492613)9:0.05904023029518157)10:0.0</statenode>
+<statenode id='BDBirthRate.t:alignment'>BDBirthRate.t:alignment[1 1] (0.0,10000.0): 1.6137548414450296 </statenode>
+<statenode id='BDDeathRate.t:alignment'>BDDeathRate.t:alignment[1 1] (0.0,1.0): 0.23664138601187484 </statenode>
+</itsabeastystatewerein>
+<!--
+{"operators":[
+{"id":"BirthRateScaler.t:alignment","p":0.1917972400832549,"accept":107600,"reject":276109,"acceptFC":106657,"rejectFC":275897,"rejectIv":0,"rejectOp":0},
+{"id":"DeathRateScaler.t:alignment","p":0.1277030337450142,"accept":88819,"reject":295062,"acceptFC":87858,"rejectFC":294902,"rejectIv":189175,"rejectOp":189175},
+{"id":"BirthDeathTreeScaler.t:alignment","p":0.7557445360717107,"accept":69954,"reject":314694,"acceptFC":69879,"rejectFC":313631,"rejectIv":0,"rejectOp":0},
+{"id":"BirthDeathTreeRootScaler.t:alignment","p":0.6053795889597201,"accept":73806,"reject":310411,"acceptFC":73658,"rejectFC":309466,"rejectIv":78052,"rejectOp":78052},
+{"id":"BirthDeathUniformOperator.t:alignment","p":"NaN","accept":476289,"reject":3370915,"acceptFC":474882,"rejectFC":3361273,"rejectIv":0,"rejectOp":0},
+{"id":"BirthDeathSubtreeSlide.t:alignment","p":0.24701217857661326,"accept":316324,"reject":1607254,"acceptFC":316066,"rejectFC":1602017,"rejectIv":377565,"rejectOp":377565},
+{"id":"BirthDeathNarrow.t:alignment","p":"NaN","accept":51301,"reject":1871581,"acceptFC":51125,"rejectFC":1866029,"rejectIv":0,"rejectOp":0},
+{"id":"BirthDeathWide.t:alignment","p":"NaN","accept":1813,"reject":383941,"acceptFC":1809,"rejectFC":382878,"rejectIv":213918,"rejectOp":213918},
+{"id":"BirthDeathWilsonBalding.t:alignment","p":"NaN","accept":328,"reject":383800,"acceptFC":328,"rejectFC":382710,"rejectIv":180899,"rejectOp":180899}
+]}
+-->
