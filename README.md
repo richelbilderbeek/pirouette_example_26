@@ -10,13 +10,8 @@ that shows the true and twin error for a BD tree when assuming a Yule tree prior
 
 ## Results
 
-![](example_26/errors.png)
+ * Download the intermediate data at 
+   [https://www.richelbilderbeek.nl/pirouette_example_26.zip](https://www.richelbilderbeek.nl/pirouette_example_26.zip)
 
-### Individual results
-
-![](example_26/314/errors.png)
-![](example_26/315/errors.png)
-![](example_26/316/errors.png)
-![](example_26/317/errors.png)
-![](example_26/318/errors.png)
+![](errors.png)
 

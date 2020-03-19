@@ -7,7 +7,8 @@
 #   ./scripts/rerun.sh
 #
 #
-#SBATCH --time=24:00:00
+#SBATCH --partition=gelifes
+#SBATCH --time=5:00:00
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=1
 #SBATCH --ntasks=1
@@ -17,5 +18,7 @@
 module load R
 
 rm -rf example_26
+rm errors.png
 time Rscript example_26.R
+zip -r pirouette_example_26.zip example_26 example_26.R scripts errors.png
 
